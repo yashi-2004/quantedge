@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  quantedge:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: quantedge-workstation
+    ports:
+      - "8501:8501"
+    environment:
+      - MPLCONFIGDIR=/tmp/matplotlib
+      - HF_HOME=/tmp/huggingface
+      - QUANTEDGE_ENV=production
+    volumes:
+      - ./datasets/cache:/app/datasets/cache
+      - ./experiments:/app/experiments
+      - ./reports:/app/reports
+    restart: unless-stopped

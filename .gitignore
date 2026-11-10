@@ -31,7 +31,8 @@ venv/
 ENV/
 
 # Streamlit
-.streamlit/
+.streamlit/*
+!.streamlit/config.toml
 
 # MLflow
 mlruns/
