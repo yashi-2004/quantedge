@@ -15,7 +15,7 @@ hmmlearn>=0.3.0,<0.4.0
 # Machine Learning & Optimization
 xgboost>=2.0.0,<3.0.0
 optuna>=3.4.0,<4.2.0
-torch>=2.1.0,<2.7.0
+torch>=2.1.0,<=2.6.0
 
 # Financial Data & Market Intelligence
 yfinance>=0.2.35,<0.3.0
@@ -28,7 +28,7 @@ plotly>=5.18.0,<6.0.0
 streamlit>=1.31.0,<1.44.0
 
 # Experiment Tracking & Persistence
-mlflow>=2.10.0,<2.21.0
+mlflow-skinny>=2.10.0,<2.21.0
 
 # Quality Assurance & Testing
 pytest>=7.4.0,<8.4.0
