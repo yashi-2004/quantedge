@@ -99,20 +99,26 @@ if not tickers:
     st.warning("Please select at least one financial security in the sidebar to begin research.")
     st.stop()
 
-# --- Fetch Synchronized Multi-Asset Data ---
-with st.spinner("Synchronizing market telemetry across active universe..."):
-    results = {
+@st.cache_data(ttl=1800, show_spinner=False)
+def load_universe_data(active_tickers, start_str, end_str, adjusted, refresh):
+    res_map = {
         t: ingestion.fetch_market_data(
             t,
-            start_date=str(start_date),
-            end_date=str(end_date),
-            use_adjusted=use_adjusted,
-            force_refresh=force_refresh,
+            start_date=start_str,
+            end_date=end_str,
+            use_adjusted=adjusted,
+            force_refresh=refresh,
         )
-        for t in tickers
+        for t in active_tickers
     }
+    matrix = ingestion.get_aligned_close_matrix(res_map)
+    return res_map, matrix
 
-close_matrix = ingestion.get_aligned_close_matrix(results)
+# --- Fetch Synchronized Multi-Asset Data ---
+with st.spinner("Synchronizing market telemetry across active universe..."):
+    results, close_matrix = load_universe_data(
+        tuple(tickers), str(start_date), str(end_date), use_adjusted, force_refresh
+    )
 
 if close_matrix.empty:
     st.error("Failed to load historical data for the selected assets. Please try another selection.")

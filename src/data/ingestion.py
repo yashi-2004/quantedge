@@ -183,14 +183,14 @@ class MarketDataIngestion:
         try:
             import yfinance as yf
 
-            # Set timeout
+            # Set fast timeout to avoid blocking page load on slow networks/cloud IPs
             hist = yf.download(
                 tickers=ticker,
                 start=start_date,
                 end=end_date,
                 progress=False,
                 auto_adjust=False,
-                timeout=10,
+                timeout=3,
             )
             if hist is not None and not hist.empty:
                 # Handle MultiIndex columns if returned
