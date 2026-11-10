@@ -105,6 +105,10 @@ def test_stationarity_analyzer(sample_ohlcv):
     rep = StationarityAnalyzer.test_stationarity(ret)
     assert rep.is_stationary is True
     assert rep.recommended_differencing == 0
+    acf_vals, pacf_vals, confint = StationarityAnalyzer.compute_acf_pacf(ret, nlags=20)
+    assert len(acf_vals) > 0
+    assert len(pacf_vals) > 0
+    assert len(acf_vals) == len(pacf_vals)
 
 
 def test_garch_model(sample_ohlcv):

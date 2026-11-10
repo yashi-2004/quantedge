@@ -5,8 +5,10 @@ Performs ADF, KPSS, ACF/PACF computations, and optimal differencing orders.
 
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
+import warnings
 import numpy as np
 import pandas as pd
+from statsmodels.tools.sm_exceptions import InterpolationWarning
 from statsmodels.tsa.stattools import acf, adfuller, kpss, pacf
 
 
@@ -41,7 +43,9 @@ class StationarityAnalyzer:
 
         # 2. KPSS Test (H0: series is stationary around a deterministic trend/level)
         try:
-            kpss_res = kpss(clean, regression="c", nlags="auto")
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore", InterpolationWarning)
+                kpss_res = kpss(clean, regression="c", nlags="auto")
             kpss_stat, kpss_pval, kpss_crit = float(kpss_res[0]), float(kpss_res[1]), {k: float(v) for k, v in kpss_res[3].items()}
         except Exception:
             kpss_stat, kpss_pval, kpss_crit = 0.0, 0.10, {"5%": 0.463}
@@ -87,7 +91,7 @@ class StationarityAnalyzer:
     @staticmethod
     def compute_acf_pacf(series: pd.Series, nlags: int = 25) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
         clean = series.dropna().astype(float)
-        nlags = min(nlags, len(clean) // 3)
+        nlags = max(1, min(nlags, len(clean) // 3))
         acf_vals, confint_acf = acf(clean, nlags=nlags, alpha=0.05)
-        pacf_vals = pacf(clean, nlags=nlags, method="yule_walker")
+        pacf_vals = pacf(clean, nlags=nlags, method="ywm")
         return acf_vals, pacf_vals, confint_acf
