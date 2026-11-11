@@ -15,6 +15,8 @@ This guide provides step-by-step instructions to deploy **QuantEdge** using free
 
 ---
 
+> **Live Production Deployment:** [https://quantedge-o7ec38tvyxirxz2vzftw6b.streamlit.app/](https://quantedge-o7ec38tvyxirxz2vzftw6b.streamlit.app/)
+
 ## Method 1: Streamlit Community Cloud (Recommended & Easiest)
 
 Streamlit Community Cloud is **100% free**, requires **no credit card**, and connects directly to your GitHub repository to generate a live, shareable public HTTPS link.
@@ -23,10 +25,7 @@ Streamlit Community Cloud is **100% free**, requires **no credit card**, and con
 
 If you have not already pushed your code to GitHub:
 
-1. Open your terminal in the `project 3` directory:
-   ```bash
-   cd "/Users/yashi/Desktop/project 3"
-   ```
+1. Open your terminal in the project directory and ensure your local `main` branch is up to date.
 
 2. Create a new repository on [GitHub.com](https://github.com/new):
    - Repository name: `quantedge`
@@ -35,7 +34,7 @@ If you have not already pushed your code to GitHub:
 
 3. Link and push your local commits to GitHub:
    ```bash
-   git remote add origin https://github.com/<YOUR_GITHUB_USERNAME>/quantedge.git
+   git remote add origin https://github.com/yashi-2004/quantedge.git
    git branch -M main
    git push -u origin main
    ```
@@ -45,16 +44,16 @@ If you have not already pushed your code to GitHub:
 1. Go to **[share.streamlit.io](https://share.streamlit.io/)** and click **"Continue with GitHub"** to sign in.
 2. Click the **"New app"** button (top right).
 3. Fill in the deployment form:
-   - **Repository**: `<YOUR_GITHUB_USERNAME>/quantedge`
+   - **Repository**: `yashi-2004/quantedge`
    - **Branch**: `main`
    - **Main file path**: `app/main.py`
    - **App URL** (Optional): Choose a custom subdomain (e.g. `quantedge-workstation.streamlit.app`)
 4. Click **"Advanced settings..."**:
-   - **Python version**: Select **3.12** or **3.11**
+   - **Python version**: Select **3.11** or **3.12** (PyTorch wheels do not yet support 3.14)
    - **Secrets**: Leave empty (QuantEdge operates with zero external paid API keys).
 5. Click **"Deploy!"**.
 
-Streamlit Cloud will automatically clone your repository, install dependencies from [`requirements.txt`](file:///Users/yashi/Desktop/project%203/requirements.txt), and launch the terminal in ~2 minutes.
+Streamlit Cloud will automatically clone your repository, install dependencies from [`requirements.txt`](../requirements.txt), and launch the terminal in ~2 minutes.
 
 ---
 
@@ -91,7 +90,7 @@ Hugging Face Spaces provides a free dedicated CPU environment with 2 vCPUs and 1
 
 ## Method 3: Docker Deployment (Containerized)
 
-QuantEdge includes a production-ready [`Dockerfile`](file:///Users/yashi/Desktop/project%203/Dockerfile) and [`docker-compose.yml`](file:///Users/yashi/Desktop/project%203/docker-compose.yml).
+QuantEdge includes a production-ready [`Dockerfile`](../Dockerfile) and [`docker-compose.yml`](../docker-compose.yml).
 
 ### Option A: Using Docker Compose
 ```bash

@@ -1,11 +1,14 @@
 # ⚡ QuantEdge
 ### An End-to-End Quantitative Research, Portfolio Optimisation & Risk Analytics Platform
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit%20Cloud-FF4B4B?logo=streamlit&logoColor=white)](https://quantedge-o7ec38tvyxirxz2vzftw6b.streamlit.app/)
+[![CI Tests](https://github.com/yashi-2004/quantedge/actions/workflows/ci.yml/badge.svg)](https://github.com/yashi-2004/quantedge/actions/workflows/ci.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue.svg)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-teal.svg)](https://opensource.org/licenses/MIT)
-[![Tests Passing](https://img.shields.io/badge/tests-18%20passed-success.svg)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-teal.svg)](./LICENSE)
 [![Hardware: CPU-Native](https://img.shields.io/badge/hardware-CPU%20Optimized%20%5BIntel%20Mac%20Resilient%5D-brightgreen.svg)]()
 [![Cost: Zero-Dependency](https://img.shields.io/badge/cost-$0.00%20Zero%20Paid%20APIs-blueviolet.svg)]()
+
+> **Live Workstation:** [Launch QuantEdge on Streamlit Cloud](https://quantedge-o7ec38tvyxirxz2vzftw6b.streamlit.app/) *(free tier may take ~20s to wake if sleeping)*
 
 ---
 
@@ -21,7 +24,7 @@ The platform provides a unified environment where quantitative researchers and d
 5. Detect latent market regimes using Gaussian Hidden Markov Models (HMM).
 6. Construct constrained optimal portfolios (Markowitz, Risk Parity, Black-Litterman, CVaR).
 7. Execute historical walk-forward simulations accounting for slippage, transaction costs, and execution lag.
-8. Stress-test portfolios under black swan historical crises (2008 GFC, 2020 COVID, 2022 Rates) and simulate 5,000 correlated Geometric Brownian Motion Monte Carlo paths.
+8. Stress-test portfolios under black swan historical crises (2008 GFC, 2020 COVID, 2022 Rates) and simulate 2,000 correlated Geometric Brownian Motion Monte Carlo paths.
 9. Track experiments locally via MLflow and SQLite.
 10. Automatically compile and export academic quantitative research papers.
 
@@ -167,7 +170,7 @@ flowchart TD
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/quantedge.git
+git clone https://github.com/yashi-2004/quantedge.git
 cd quantedge
 
 # 2. Create and activate virtual environment
